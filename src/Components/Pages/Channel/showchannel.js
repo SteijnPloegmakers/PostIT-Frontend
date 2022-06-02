@@ -1,20 +1,35 @@
 import {Card, Button} from "react-bootstrap";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import "./channelcard.css"
 
 
-function ShowChannel(){
+function ShowChannel() {
 
+    const [cdata, setData] = useState([])
 
-return(<div style={{display: "flex", justifyContent: "center", padding: "40px"}}>
-    <Card style={{width: '50rem', border: "1px black solid", padding: "10px"}}>
-        <Card.Body>
-            <Card.Title style={{fontWeight: 1000}}>WAlk</Card.Title>
-            <Card.Text>
-                WAkker
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-    </Card>
-</div>);
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/channels').then(res => {
+            let incData = res.data;
+            console.log(cdata)
+            setData(incData)
+        })
+    },[])
+
+    return (<div>
+        {cdata.map(x => <div className="channelCard">
+            <Card className={"channel"}>
+                <Card.Body>
+                    <Card.Title style={{fontWeight: 1000}}>{x.title}</Card.Title>
+                    <Card.Text>
+                        {x.description}
+                    </Card.Text>
+                    <Button>Go to channel</Button>
+                </Card.Body>
+            </Card>
+        </div>)}
+    </div>)
 }
+
 
 export default ShowChannel

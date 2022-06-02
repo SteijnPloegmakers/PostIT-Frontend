@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {Pivot, PivotItem } from '@fluentui/react';
-import {useHistory} from "react-router-dom";
+import "./header.css"
 
 
 export const PivotBasicExample: React.FunctionComponent = () => {
 
     return (
         <Pivot aria-label="Basic Pivot Example">
-            <PivotItem headerText="Home">
+            <PivotItem className="Text" headerText="Home">
             </PivotItem>
             <PivotItem headerText="Channels">
             </PivotItem>
