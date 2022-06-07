@@ -6,18 +6,19 @@ import "./channelcard.css"
 
 function ShowChannel() {
 
-    const [cdata, setData] = useState([])
+    const [cData, setData] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/channels').then(res => {
             let incData = res.data;
-            console.log(cdata)
+            console.log(cData)
             setData(incData)
         })
     },[])
 
     return (<div>
-        {cdata.map(x => <div className="channelCard">
+        <h1>All Channels</h1>
+        {cData.map(x => <div className="channelCard">
             <Card className={"channel"}>
                 <Card.Body>
                     <Card.Title style={{fontWeight: 1000}}>{x.title}</Card.Title>

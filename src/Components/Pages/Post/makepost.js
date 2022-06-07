@@ -55,18 +55,18 @@ function UploadPost() {
                 type="text"
                 placeholder="Description"
             /><br/>
+            <select id="channelId">
+                <option value="">Politiek</option>
+                <option value="">Milieu</option>
+                <option value="">Zorg</option>
+            </select><br/>
             <input
                 onChange={handleUser}
                 id="userId"
                 type="text"
                 style={{visibility: "hidden"}}
             /><br/><br/>
-            <input
-                onChange={handleChannel}
-                id="channelId"
-                type="text"
-                style={{visibility: "hidden"}}
-            /><br /><br/>
+
             <button onClick={submitPost}>Upload Post</button>
         </div>
     )

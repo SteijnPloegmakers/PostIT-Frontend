@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Pivot, PivotItem } from '@fluentui/react';
-import "./header.css"
 
 
 export const PivotBasicExample: React.FunctionComponent = () => {

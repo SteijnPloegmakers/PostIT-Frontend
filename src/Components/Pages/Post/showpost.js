@@ -1,18 +1,33 @@
 import {Card, Button} from "react-bootstrap";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 function ShowPost(){
 
-    return <div style={{ display: "flex", justifyContent: "center", padding: "40px"}}>
-        <Card style={{ width: '50rem', border: "1px black solid", padding: "10px"}}>
-            <Card.Body>
-                <Card.Title style={{fontWeight: 700}}>Smog in lucht</Card.Title>
-                <Card.Text>
-                    Het is ongelooflijk hoeveel smog ik tegenwoordig in de lucht vindt. Is dit normaal?
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-        </Card>
-    </div>
+    const [pData, setData] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/posts').then(res => {
+            let incData = res.data;
+            console.log(pData)
+            setData(incData)
+        })
+    },[])
+
+    return (<div>
+        <h1>All Posts</h1>
+        {pData.map(x => <div className="postCard">
+            <Card className={"post"}>
+                <Card.Body>
+                    <Card.Title style={{fontWeight: 1000}}>{x.title}</Card.Title>
+                    <Card.Text>
+                        {x.description}
+                    </Card.Text>
+                    <Button>Go to post</Button>
+                </Card.Body>
+            </Card>
+        </div>)})
+    </div>)
 }
 
 export default ShowPost;
